@@ -1,0 +1,19 @@
+.flex{
+    margin:auto;
+    display:block;
+}
+
+.bg-aqua{
+    background: aquamarine;
+ }
+
+ .width20 {
+    width: 20%;
+  }
+  .container {
+    display: flex;
+  }
+.button {
+    position: absolute;
+    top: 50%;
+}

@@ -1,0 +1,62 @@
+<!-- <div>
+  <div *ngFor="let cenpac of cenpacs">
+    <input type="checkbox" name="cenpac.name" value="cenpac.toRecep" (change)="toRecep($event, cenpac)">
+    <p>{{cenpac.name}}</p>
+    <p>{{cenpac.stock}}</p>
+    <p *ngIf="cenpac.order==true">a receptioné </p>
+  </div>
+  <button (click)='onReception(cenpacs)'>Validation</button>
+</div> -->
+<mat-tab-group>
+  <mat-tab label="Cenpac">
+    <mat-card [style.background]="'lightgrey'">
+
+      <mat-grid-list cols="4" rowHeight="5:3">
+
+        <mat-grid-tile *ngFor="let cenpac of cenpacs;let i = index" [colspan]=1 [rowspan]=1>
+          <mat-card>
+
+            <h1 style="text-align: center">{{cenpac.name}}</h1>
+
+            <p style="text-align: center" *ngIf="cenpac.order==true">Commande à réceptionnée </p>
+            <p style="text-align: center" *ngIf="cenpac.order==false">Pas de commande à réceptionnée </p>
+
+            <div style="text-align: center">
+              <mat-checkbox color="primary" type="checkbox" name="cenpacs[i].name" [(ngModel)]="cenpacs[i].toRecep" value="cenpacs[i].toRecep"
+                (change)="toRecep($event, i,'cenpacs')"></mat-checkbox>
+            </div>
+
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <button mat-raised-button color="primary" (click)='onReception()'>Validation</button>
+    </mat-card>
+  </mat-tab>
+
+
+
+
+  <mat-tab class="flex" label="Nefab">
+    <mat-card [style.background]="'lightgrey'">
+
+      <mat-grid-list cols="4" rowHeight="5:3">
+
+        <mat-grid-tile *ngFor="let nefab of nefabs;let i = index" [colspan]=1 [rowspan]=1>
+          <mat-card>
+            <h1 style="text-align: center">{{nefab.name}}</h1>
+            <p style="text-align: center" *ngIf="nefab.order==true">Commande en cours </p>
+            <p style="text-align: center" *ngIf="nefab.order==false">Pas de commande à réceptionnée </p>
+            <div style="text-align: center">
+              <mat-checkbox color="primary" type="checkbox" name="nefabs[i].name" [(ngModel)]="nefabs[i].toRecep" value="nefabs[i].toRecep"
+                (change)="toRecep($event, i,'nefabs')"></mat-checkbox>
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+    <button mat-raised-button color="primary" (click)='onReception()'>Validation</button>
+  </mat-tab>
+
+  <mat-tab class="flex" label="Bollore">Content 2</mat-tab>
+  <mat-tab class="flex" label="Autre">Content 2</mat-tab>
+</mat-tab-group>

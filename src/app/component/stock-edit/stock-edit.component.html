@@ -1,0 +1,109 @@
+<mat-tab-group>
+  <mat-tab label="Cenpac">
+    <mat-card [style.background]="'lightgrey'">
+      <mat-radio-group>
+        <mat-radio-button color="primary" [checked]="factor==1" (change)="onCheck(1)" value='1'>1</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==2" (change)="onCheck(2)" value='2'>2</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==5" (change)="onCheck(5)" value='5'>5</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==10" (change)="onCheck(10)" value='10'>10</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-grid-list cols="4" rowHeight="1:1">
+
+        <mat-grid-tile *ngFor='let cenpac of cenpacs' [colspan]=1 [rowspan]=1>
+          <mat-card class="container">
+
+            <h1 style="text-align: center">{{cenpac.name}}</h1>
+            <p style="text-align: center">{{cenpac.dimension}}</p>
+
+
+
+            <p style="text-align: center">Quantité à prélever :</p>
+            <p style="text-align: center">{{cenpac.prelevement}} Pcs</p>
+
+            <p style="text-align: center">Stock : {{cenpac.stock}}Pcs</p>
+
+            <p *ngIf="cenpac.order==true ">{{cenpac.inDelivery}} pièces sont en cours de livraison</p>
+
+            <!-- <p *ngIf="cenpac.stock <= cenpac.stockLimit && cenpac.order==false ">Référence à commander</p> -->
+            <mat-card-actions>
+              <div style="text-align: center">
+
+                <button mat-fab color="primary" (click)='decrementePrelevement(cenpac)'>-</button>
+                {{cenpac.prelevement}}
+                <button mat-fab color="primary" (click)='incrementePrelevement(cenpac)'>+</button>
+
+              </div>
+            </mat-card-actions>
+
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <button mat-raised-button color='primary' (click)='editStock(cenpac)'>Prélévement</button>
+    </mat-card>
+
+
+  </mat-tab>
+
+  <mat-tab label="Nefab">
+    <mat-card [style.background]="'lightgrey'">
+      <mat-radio-group>
+        <mat-radio-button color="primary" [checked]="factor==1" (change)="onCheck(1)" value='1'>1</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==2" (change)="onCheck(2)" value='2'>2</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==5" (change)="onCheck(5)" value='5'>5</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="factor==10" (change)="onCheck(10)" value='10'>10</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-grid-list cols="4" rowHeight="1:1">
+
+        <mat-grid-tile *ngFor='let nefab of nefabs' [colspan]=1 [rowspan]=1>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title class="mat-title">
+                <h1>{{nefab.name}}</h1>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p style="text-align: center">{{nefab.dimension}}</p>
+
+              <p style="text-align: center">Quantité à prélever :{{nefab.prelevement}} Pcs</p>
+
+              <p style="text-align: center">Stock : {{nefab.stock}}Pcs</p>
+
+              <p style="text-align: center" *ngIf="nefab.order==true ">{{nefab.inDelivery}} pièces sont en cours de livraison</p>
+
+              <!-- <p style="text-align: center" *ngIf="nefab.stock <= nefab.stockLimit && nefab.order==false ">Référence à commander</p> -->
+
+            </mat-card-content>
+            <mat-card-actions>
+              <div style="text-align: center">
+
+                <!-- <form>
+                <mat-form-field>
+                  <input style="vertical-align: middle" matInput type="number" [(ngModel)]="nefab.prelevement" name="toto" value='nefab.prelevement'>
+                </mat-form-field>
+              </form> -->
+
+                <button mat-fab color="primary" (click)='decrementePrelevement(nefab)'>-</button>
+                {{nefab.prelevement}}
+                <button mat-fab color="primary" (click)='incrementePrelevement(nefab)'>+</button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <button mat-raised-button color='primary' (click)='editStock(nefab)'>Prélévement</button>
+    </mat-card>
+
+
+  </mat-tab>
+
+
+
+  <mat-tab class="flex" label="Bollore">Content 2</mat-tab>
+  <mat-tab class="flex" label="Autre">Content 2</mat-tab>
+</mat-tab-group>

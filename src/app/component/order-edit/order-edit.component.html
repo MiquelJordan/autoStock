@@ -1,0 +1,58 @@
+<mat-tab-group>
+  <mat-tab label="Cenpac">
+    <mat-card [style.background]="'lightgrey'">
+
+      <mat-grid-list cols="4" rowHeight="1:1">
+
+        <mat-grid-tile *ngFor='let cenpac of cenpacs,let i = index' [colspan]=1 [rowspan]=1>
+          <mat-card>
+            <h1 style="text-align: center">{{cenpac.name}}</h1>
+            <div style="text-align: center">Stock:{{cenpac.stock}} Pcs</div>
+            <div style="text-align: center"> Limite de stock:{{cenpac.stockLimit}} Pcs</div>
+            <br>
+            <div style="text-align: center">
+              <mat-checkbox type="checkbox" color="primary" name="cenpacs[i].name" [(ngModel)]="cenpacs[i].toOrder" value="cenpacs[i].toOrder"
+                (change)="toOrder($event, i,'cenpacs')"></mat-checkbox>
+            </div>
+            <div *ngIf="cenpac.stock <= cenpac.stockLimit && cenpac.order==false ">{{cenpac.inDelivery}} pièces à commander</div>
+            <div *ngIf="cenpac.order==true ">{{cenpac.inDelivery}} pièces sont en cours de livraison</div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <button mat-raised-button color='primary' (click)='commandValidation(cenpacs)'>Commander</button>
+    </mat-card>
+  </mat-tab>
+
+
+
+
+
+  <mat-tab label="Nefab">
+    <mat-card [style.background]="'lightgrey'">
+
+      <mat-grid-list cols="4" rowHeight="1:1">
+
+        <mat-grid-tile *ngFor='let nefab of nefabs,let i = index' [colspan]=1 [rowspan]=1>
+          <mat-card>
+
+            <h1 style="text-align: center">{{nefab.name}}</h1>
+            <div style="text-align: center">Stock:{{nefab.stock}} Pcs</div>
+            <div style="text-align: center">Limite de stock:{{nefab.stockLimit}} Pcs</div>
+            <div style="text-align: center">
+              <mat-checkbox color="primary" type="checkbox" name="nefabs[i].name" [(ngModel)]="nefabs[i].toOrder" value="nefabs[i].toOrder"
+                (change)="toOrder($event, i,'nefabs')"></mat-checkbox>
+            </div>
+            <div *ngIf="nefab.stock <= nefab.stockLimit && nefab.order==false ">{{nefab.inDelivery}} pièces à commander</div>
+            <div *ngIf="nefab.order==true ">{{nefab.inDelivery}} pièces sont en cours de livraison</div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <button mat-raised-button color='primary' (click)='commandValidation(nefabs)'>Commander</button>
+    </mat-card>
+
+
+
+  </mat-tab>
+  <mat-tab class="flex" label="Bollore">Content 2</mat-tab>
+  <mat-tab class="flex" label="Autre">Content 2</mat-tab>
+</mat-tab-group>
